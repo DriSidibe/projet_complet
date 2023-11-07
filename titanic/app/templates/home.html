@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Learning Titanic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: auto;
+            padding: 0;
+            width: 500px;
+        }
+
+        h1 {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        button{
+            background-color: #007BFF;
+            padding: 10px;
+            border: none;
+            color: white;
+        }
+
+        footer {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Machine Learning Titanic</h1>
+    <p>Bienvenue sur notre projet de machine learning sur le Titanic. Nous utilisons des techniques d'apprentissage automatique pour analyser les données du Titanic et prévoir les chances de survie des passagers en fonction de différentes caractéristiques.</p>
+
+    <h2>Soumettre des données de passager</h2>
+    <p>Utilisez le formulaire ci-dessous pour soumettre les données d'un passager et obtenir une prédiction de survie :</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="age">Âge :</label>
+        <input type="text" name="age" id="age" required>
+
+        <label for="sexe">Sexe :</label>
+        <select name="sexe" id="sexe" required>
+            <option selected="selected" value="0">Homme</option>
+            <option value="1">Femme</option>
+        </select>
+
+        <label for="pclass">Classe de billet :</label>
+        <select name="pclass" id="pclass" required>
+            <option selected="selected" value="1">1ère classe</option>
+            <option value="2">2ème classe</option>
+            <option value="3">3ème classe</option>
+        </select>
+
+        <label for="sibsp">Nombre de frères et sœurs/conjoints à bord :</label>
+        <input type="text" name="sibsp" id="freres_soeurs" required>
+
+        <div>
+            <div style="display: flex; justify-content: space-between;">
+                <input type="submit" value="Obtenir la prédiction">
+                {% if accuracy %}
+                    <p>le modele a <span style="color: green;">{{ accuracy }}%</span> de performance</p>
+                {% endif %}
+            </div>
+            {% if survie == 1 %}
+                <h1>survecu</h1>
+            {% elif survie == 0 %}
+                <h1>non survecu</h1>
+            {% endif %}
+        </div>
+    </form>
+
+    <footer>
+        <p>&copy; 2023 Machine Learning Titanic</p>
+    </footer>
+</body>
+</html>
