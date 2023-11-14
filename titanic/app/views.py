@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.linear_model import LinearRegression
 import os
 import pandas as pd
 import numpy as np
@@ -48,7 +49,8 @@ def train_titanic_model(data_file):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # Initialiser et entraîner un modèle de classification (Random Forest)
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    #model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model = LinearRegression()
     model.fit(X_train, y_train)
 
     # Prédire les étiquettes sur l'ensemble de test
